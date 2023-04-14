@@ -99,8 +99,34 @@ function App() {
         b(copy2);
 
       }}>정렬</button>
+
+      {/* <Modal></Modal> */}
+      <Modal/>
+      
     </div>
   );
+}
+
+/*
+* 컴포넌트(축약한 HTML 덩어리) 만드는 법
+  1. function 만들고
+  2. return() 안에 html 담기
+  3. <함수명></함수명>쓰기
+
+  * 컴포넌트 만들 때 주의사항
+  1. component 작명할 땐 영어 대문자로 시작하게 작명
+  2. return(<div></div>) 안에 html 태그들이 평행하게 여러개 들어가면 x
+  3. function App(){} 내부에 만들면 안된다.
+*/
+
+function Modal(){
+  return(
+    <div className="modal">
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+    </div>
+  )
 }
 
 export default App;
