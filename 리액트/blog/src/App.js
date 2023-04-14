@@ -13,14 +13,19 @@ function App() {
   let[따봉, 따봉변경] = useState(0);
   let[modal, setModal] = useState(true); // UI의 현재 상태: 열림, 닫힘, 보임, 1, true, ...
 
-  function 함수(){
-    console.log(1);
-  }
+  // 모든 array 뒤에 map() 사용가능
+  // array의 자료 개수만큼 함수 안의 코드 실행해줌
+  // 함수의 파라미터는 array안에 있는 자료임
+  // return에 뭐 적으면 array 담아줌
+  [1,2,3].map(function(a){
+    return '123321';
+    console.log(a);
+  })
 
   return (
     <div className="App">
       <Nav></Nav>
-      <div className="list">
+      {/* <div className="list">
         <h4>{a[0]} <span onClick={() => {따봉변경(따봉 + 1)}}>👍</span>      {따봉} </h4>
         <p>4월 13일 발행</p>
         <button onClick={()=>{
@@ -32,33 +37,40 @@ function App() {
            b(copy);
           }}>바꿔</button>
       </div>
-      <div className="list">
-        <h4>{a[1]}</h4>
-        <p>4월 13일 발행</p>
-      </div>
-      <div className="list">
-        <h4 onClick={()=>{
-          let copy = [...a]
-
-          copy[2] = <Modal></Modal>
-          b(copy)
-        }}>{a[2]}</h4>
-        <p>4월 13일 발행</p>
-      </div>  
       
-      
-      <button type="button" onClick={() => {
+      <div className="list">
+        <h4  onClick={() => {
         // 내 풀이
         // let copy2 = [...a];
         // copy2 = copy2.sort();
         // b(copy2);
 
-        if(modal == true){
-          setModal(false);
-        } else{
-          setModal(true);
-        }
-      }}>정렬</button>
+        // 강사님 풀이 1
+        // if(modal == true){ // 현재 모달이 열려있다면
+        //   setModal(false);
+        // } else{ // 현재 모달이 닫혀있다면
+        //   setModal(true);
+        // }
+
+        // 강사님 풀이2
+        setModal(!modal);
+      }}>{a[2]}</h4>
+        <p>4월 13일 발행</p>
+      </div>  */}
+
+      {
+        a.map(function(b, i){ // a: 순차적으로 접근한 요소, i: 인덱스
+          return (
+            <div className="list">
+            <h4>{a[i]} <span onClick={() => {따봉변경(따봉 + 1)}}>👍</span>      {따봉}</h4>
+            <p>4월 13일 발행</p>
+      </div>
+          )
+        })
+      } 
+      
+      
+      <button type="button">정렬</button>
 
       {/* <Modal></Modal> */}
       
