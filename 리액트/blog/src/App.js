@@ -11,6 +11,7 @@ function App() {
   //let [title2, t2] = useState('리액트 독학');
   // document.querySelector('h4').innerHTML(post);
   let[따봉, 따봉변경] = useState(0);
+  let[modal, setModal] = useState(true); // UI의 현재 상태: 열림, 닫힘, 보임, 1, true, ...
 
   function 함수(){
     console.log(1);
@@ -18,7 +19,118 @@ function App() {
 
   return (
     <div className="App">
-      <div className="black-nav">
+      <Nav></Nav>
+      <div className="list">
+        <h4>{a[0]} <span onClick={() => {따봉변경(따봉 + 1)}}>👍</span>      {따봉} </h4>
+        <p>4월 13일 발행</p>
+        <button onClick={()=>{
+            // b(['가을 코트 추천', '역삼 우동 맛집', '리액트 독학'])
+           // a[0] = '가을 코트 추천';
+           // b(a);
+           let copy = [...a];
+           copy[0] = '가을 코트 추천';
+           b(copy);
+          }}>바꿔</button>
+      </div>
+      <div className="list">
+        <h4>{a[1]}</h4>
+        <p>4월 13일 발행</p>
+      </div>
+      <div className="list">
+        <h4 onClick={()=>{
+          let copy = [...a]
+
+          copy[2] = <Modal></Modal>
+          b(copy)
+        }}>{a[2]}</h4>
+        <p>4월 13일 발행</p>
+      </div>  
+      
+      
+      <button type="button" onClick={() => {
+        // 내 풀이
+        // let copy2 = [...a];
+        // copy2 = copy2.sort();
+        // b(copy2);
+
+        if(modal == true){
+          setModal(false);
+        } else{
+          setModal(true);
+        }
+      }}>정렬</button>
+
+      {/* <Modal></Modal> */}
+      
+      {
+       /* html 태그만 나와야해서 if문, for문 사용못함 => 삼항연산자 사용
+       if(){
+          <Modal></Modal>
+        }
+        */
+      //  1 == 2? '맞음':'틀림'
+      modal == true ? <Modal></Modal> : null
+      }
+
+      {/* 
+        * 리액트에서 동적인 UI(원래 없었지만 생기는 것) 만드는 step
+          1. HTML, CSS로 미리 UI 디자인 해놓기
+          2. UI의 현재 상태를 state로 저장해두기
+          3. state 상태에 따라서 UI가 어떻게 보일지 조건문 작성
+      */}
+
+      <Btn></Btn>
+      
+    </div>
+  );
+}
+
+/*
+* 컴포넌트(축약한 HTML 덩어리) 만드는 법
+  1. function 만들고
+  2. return() 안에 html 담기
+  3. <함수명></함수명>쓰기
+
+  * 컴포넌트 만들 때 주의사항
+  1. component 작명할 땐 영어 대문자로 시작하게 작명
+  2. return(<div></div>) 안에 html 태그들이 평행하게 여러개 들어가면 x
+  3. function App(){} 내부에 만들면 안된다.
+
+  어떤 HTML들을 Component로 만들면 좋을까
+  - 사이트에 반복해서 출현하는 HTML 덩어리
+  - 긴 코드를 축약
+  - 다른 곳에서 코드 재사용할때
+  - 복잡한 코드를 작은 기능으로 나눌 때
+
+  * 컴포넌트의 단점
+   - 한 function 안에 있는 변수를 다른 function애 호출 할 수 없음
+   - props 문법을 이용해서 state <Modal>까지 전달해줘야 사용할 수 있음 
+
+  * 챌린지: 연습삼아 다른 컴포넌트 1개를 만들기
+  ** 챌린지: 글제목 누르면 html 보이는게 아니고 
+             글제목 누르면 state 값을 변경
+*/
+
+function Modal(){
+  return(
+    <div className="modal">
+        {/* <h4>{a[0]}</h4> */}
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+    </div>
+  )
+}
+
+function Btn(){
+  return(
+  <button>ㅎㅇ</button>
+  )
+}
+
+function Nav(){
+  return(
+    <div className="black-nav">
         {/* 
         
         ** JSX 문법
@@ -71,61 +183,8 @@ function App() {
           => 리액트에서 array, object state를 
         */
         }
-        <h4 style={{color:'red', fontSize:"16px"}}>{logo}</h4>
+        <h4 style={{color:'red', fontSize:"16px"}}>ReactBlog</h4>
       </div>
-      <div className="list">
-        <h4>{a[0]} <span onClick={() => {따봉변경(따봉 + 1)}}>👍</span>      {따봉} </h4>
-        <p>4월 13일 발행</p>
-        <button onClick={()=>{
-            // b(['가을 코트 추천', '역삼 우동 맛집', '리액트 독학'])
-           // a[0] = '가을 코트 추천';
-           // b(a);
-           let copy = [...a];
-           copy[0] = '가을 코트 추천';
-           b(copy);
-          }}>바꿔</button>
-      </div>
-      <div className="list">
-        <h4>{a[1]}</h4>
-        <p>4월 13일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{a[2]}</h4>
-        <p>4월 13일 발행</p>
-      </div>
-      <button type="button" onClick={() => {
-        let copy2 = [...a];
-        copy2 = copy2.sort();
-        b(copy2);
-
-      }}>정렬</button>
-
-      {/* <Modal></Modal> */}
-      <Modal/>
-      
-    </div>
-  );
-}
-
-/*
-* 컴포넌트(축약한 HTML 덩어리) 만드는 법
-  1. function 만들고
-  2. return() 안에 html 담기
-  3. <함수명></함수명>쓰기
-
-  * 컴포넌트 만들 때 주의사항
-  1. component 작명할 땐 영어 대문자로 시작하게 작명
-  2. return(<div></div>) 안에 html 태그들이 평행하게 여러개 들어가면 x
-  3. function App(){} 내부에 만들면 안된다.
-*/
-
-function Modal(){
-  return(
-    <div className="modal">
-        <h4>제목</h4>
-        <p>날짜</p>
-        <p>상세내용</p>
-    </div>
   )
 }
 
