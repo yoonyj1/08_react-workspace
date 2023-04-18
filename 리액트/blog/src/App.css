@@ -1,35 +1,49 @@
 .App {
   text-align: center;
 }
-
-.black-nav{
+/*04-13-목*/
+.black-nav {
   display: flex;
-  background: black;
+  background-color: blueviolet;
   width: 100%;
-  color: white;
   padding-left: 20px;
 }
-
 div{
   box-sizing: border-box;
 }
-
 .list{
   padding-left: 20px;
   text-align: left;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid gray;
+}
+/*end*/
+button {
+  margin-right:5px;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: medium;
+}
+.modal {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #eee;
+  text-align: left;
+  border-radius: 40px;
+}
+button >span {
+  color: red;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
-.modal{
-  margin-top: 20px;
-  padding: 20px;
-  background: #eee;
-  text-align: left;
+#logo {
+  color:white;
+  font-size:20px;
+  padding-right:30px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
