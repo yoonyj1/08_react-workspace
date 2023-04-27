@@ -85,13 +85,8 @@ function App() {
         </>
           
         }/>
-        <Route path='/detail' element={
-        <>
-          <Detail></Detail>
-        
-        </>
-        
-        }/>
+        <Route path='/detail/:id' element={<Detail shoes = {shoes}></Detail>}/>
+
         <Route path='/about' element={<About></About>}>
           <Route path='member' element={<div>멤버임</div>}/>
           <Route path='location' element={<div>멤버아님</div>}/>
